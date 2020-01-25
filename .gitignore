@@ -21,3 +21,4 @@ test/bin/
 # Cache
 *.swp
 *.zip
+example/config.ini

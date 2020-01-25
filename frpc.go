@@ -16,6 +16,7 @@ package frpc
 
 import (
 	"context"
+	"math/rand"
 	"net"
 	"os"
 	"os/signal"
@@ -26,6 +27,7 @@ import (
 	"github.com/charlesbao/frpc/client"
 	"github.com/charlesbao/frpc/models/config"
 	"github.com/charlesbao/frpc/utils/log"
+	"github.com/fatedier/golib/crypto"
 )
 
 var (
@@ -61,6 +63,12 @@ var (
 
 	kcpDoneCh chan struct{}
 )
+
+func init() {
+	crypto.DefaultSalt = "frp"
+	rand.Seed(time.Now().UnixNano())
+	kcpDoneCh = make(chan struct{})
+}
 
 func handleSignal(svr *client.Service) {
 	ch := make(chan os.Signal)

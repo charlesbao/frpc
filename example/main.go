@@ -3,6 +3,6 @@ package main
 import "github.com/charlesbao/frpc"
 
 func main() {
-	err := frpc.RunClient("config.ini")
+	err := frpc.Run("config.ini")
 	panic(err)
 }
